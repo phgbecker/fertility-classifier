@@ -1,17 +1,20 @@
 package diagnosis.attribute;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum SmokingHabit {
-    NEVER(-1),
-    OCCASIONAL(0),
-    DAILY(1);
+    NEVER("-1"),
+    OCCASIONAL("0"),
+    DAILY("1");
 
-    private int indicator;
+    private String indicator;
 
-    SmokingHabit(int indicator) {
+    SmokingHabit(String indicator) {
         this.indicator = indicator;
     }
 
-    public int getIndicator() {
+    @JsonValue
+    public String getIndicator() {
         return indicator;
     }
 }

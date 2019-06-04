@@ -1,17 +1,20 @@
 package diagnosis.attribute;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum HighFeversLastYear {
-    LESS_THAN_THREE_MONTHS_AGO(-1),
-    MORE_THAN_THREE_MONTHS_AGO(0),
-    NO(1);
+    LESS_THAN_THREE_MONTHS_AGO("-1"),
+    MORE_THAN_THREE_MONTHS_AGO("0"),
+    NO("1");
 
-    private int indicator;
+    private String indicator;
 
-    HighFeversLastYear(int indicator) {
+    HighFeversLastYear(String indicator) {
         this.indicator = indicator;
     }
 
-    public int getIndicator() {
+    @JsonValue
+    public String getIndicator() {
         return indicator;
     }
 }

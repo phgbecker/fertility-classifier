@@ -1,7 +1,38 @@
 package diagnosis;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import diagnosis.attribute.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.io.File;
+import java.io.IOException;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@JsonPropertyOrder(
+        {
+                "season",
+                "age",
+                "childishDisease",
+                "accidentOrSeriousTrauma",
+                "surgicalIntervention",
+                "highFeversLastYear",
+                "frequencyAlcoholConsumption",
+                "smokingHabit",
+                "hoursSpentSittingPerDay",
+                "diagnosis"
+        }
+)
 public class FertilityDiagnosis {
     private Season season;
     private Age age;
@@ -14,98 +45,31 @@ public class FertilityDiagnosis {
     private HoursSpentSittingPerDay hoursSpentSittingPerDay;
     private Diagnosis diagnosis;
 
-    public FertilityDiagnosis() {
+    public void serializeToCsv(String fileName) throws IOException {
+        CsvMapper csvMapper = new CsvMapper();
+        CsvSchema csvSchema = csvMapper.schemaFor(FertilityDiagnosis.class).withHeader();
+
+        csvMapper.writer(csvSchema).writeValue(
+                new File(fileName),
+                this
+        );
     }
 
-    public FertilityDiagnosis(Season season, Age age, ChildishDisease childishDisease, AccidentOrSeriousTrauma accidentOrSeriousTrauma, SurgicalIntervention surgicalIntervention, HighFeversLastYear highFeversLastYear, FrequencyAlcoholConsumption frequencyAlcoholConsumption, SmokingHabit smokingHabit, HoursSpentSittingPerDay hoursSpentSittingPerDay) {
-        this.season = season;
-        this.age = age;
-        this.childishDisease = childishDisease;
-        this.accidentOrSeriousTrauma = accidentOrSeriousTrauma;
-        this.surgicalIntervention = surgicalIntervention;
-        this.highFeversLastYear = highFeversLastYear;
-        this.frequencyAlcoholConsumption = frequencyAlcoholConsumption;
-        this.smokingHabit = smokingHabit;
-        this.hoursSpentSittingPerDay = hoursSpentSittingPerDay;
+    public void serializeToJson(String fileName) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        objectWriter.writeValue(
+                new File(fileName),
+                this
+        );
     }
 
-    public Season getSeason() {
-        return season;
-    }
+    public FertilityDiagnosis deserializeFromJson(String fileName) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
 
-    public void setSeason(Season season) {
-        this.season = season;
-    }
-
-    public Age getAge() {
-        return age;
-    }
-
-    public void setAge(Age age) {
-        this.age = age;
-    }
-
-    public ChildishDisease getChildishDisease() {
-        return childishDisease;
-    }
-
-    public void setChildishDisease(ChildishDisease childishDisease) {
-        this.childishDisease = childishDisease;
-    }
-
-    public AccidentOrSeriousTrauma getAccidentOrSeriousTrauma() {
-        return accidentOrSeriousTrauma;
-    }
-
-    public void setAccidentOrSeriousTrauma(AccidentOrSeriousTrauma accidentOrSeriousTrauma) {
-        this.accidentOrSeriousTrauma = accidentOrSeriousTrauma;
-    }
-
-    public SurgicalIntervention getSurgicalIntervention() {
-        return surgicalIntervention;
-    }
-
-    public void setSurgicalIntervention(SurgicalIntervention surgicalIntervention) {
-        this.surgicalIntervention = surgicalIntervention;
-    }
-
-    public HighFeversLastYear getHighFeversLastYear() {
-        return highFeversLastYear;
-    }
-
-    public void setHighFeversLastYear(HighFeversLastYear highFeversLastYear) {
-        this.highFeversLastYear = highFeversLastYear;
-    }
-
-    public FrequencyAlcoholConsumption getFrequencyAlcoholConsumption() {
-        return frequencyAlcoholConsumption;
-    }
-
-    public void setFrequencyAlcoholConsumption(FrequencyAlcoholConsumption frequencyAlcoholConsumption) {
-        this.frequencyAlcoholConsumption = frequencyAlcoholConsumption;
-    }
-
-    public SmokingHabit getSmokingHabit() {
-        return smokingHabit;
-    }
-
-    public void setSmokingHabit(SmokingHabit smokingHabit) {
-        this.smokingHabit = smokingHabit;
-    }
-
-    public HoursSpentSittingPerDay getHoursSpentSittingPerDay() {
-        return hoursSpentSittingPerDay;
-    }
-
-    public void setHoursSpentSittingPerDay(HoursSpentSittingPerDay hoursSpentSittingPerDay) {
-        this.hoursSpentSittingPerDay = hoursSpentSittingPerDay;
-    }
-
-    public Diagnosis getDiagnosis() {
-        return diagnosis;
-    }
-
-    public void setDiagnosis(Diagnosis diagnosis) {
-        this.diagnosis = diagnosis;
+        return objectMapper.readValue(
+                new File(fileName),
+                this.getClass()
+        );
     }
 }

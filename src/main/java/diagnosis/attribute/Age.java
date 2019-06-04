@@ -1,16 +1,21 @@
 package diagnosis.attribute;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class Age {
-    private int age;
+    private String age;
 
     public Age() {
     }
 
-    public Age(int age) {
+    public Age(String age) {
         this.age = age;
     }
 
-    public int getAge() {
+    @JsonValue
+    public String getAge() {
         return age;
     }
 }

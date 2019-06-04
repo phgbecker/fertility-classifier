@@ -1,16 +1,21 @@
 package diagnosis.attribute;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class HoursSpentSittingPerDay {
-    private int hours;
+    private String hours;
 
     public HoursSpentSittingPerDay() {
     }
 
-    public HoursSpentSittingPerDay(int hours) {
+    public HoursSpentSittingPerDay(String hours) {
         this.hours = hours;
     }
 
-    public int getHours() {
+    @JsonValue
+    public String getHours() {
         return hours;
     }
 }

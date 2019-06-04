@@ -1,18 +1,21 @@
 package diagnosis.attribute;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum Season {
-    WINTER(-1),
-    SPRING(-0.33),
-    SUMMER(0.33),
-    FALL(1);
+    WINTER("-1"),
+    SPRING("-0.33"),
+    SUMMER("0.33"),
+    FALL("1");
 
-    private double indicator;
+    private String indicator;
 
-    Season(double indicator) {
+    Season(String indicator) {
         this.indicator = indicator;
     }
 
-    public double getIndicator() {
+    @JsonValue
+    public String getIndicator() {
         return indicator;
     }
 }

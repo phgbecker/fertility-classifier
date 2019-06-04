@@ -1,16 +1,19 @@
 package diagnosis.attribute;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum SurgicalIntervention {
-    YES(0),
-    NO(1);
+    YES("0"),
+    NO("1");
 
-    private int indicator;
+    private String indicator;
 
-    SurgicalIntervention(int indicator) {
+    SurgicalIntervention(String indicator) {
         this.indicator = indicator;
     }
 
-    public int getIndicator() {
+    @JsonValue
+    public String getIndicator() {
         return indicator;
     }
 }
