@@ -1,0 +1,15 @@
+{
+  "season": "FALL",
+  "age": {
+    "age": 31
+  },
+  "childishDisease": "YES",
+  "accidentOrSeriousTrauma": "NO",
+  "surgicalIntervention": "YES",
+  "highFeversLastYear": "NO",
+  "frequencyAlcoholConsumption": "ONCE_A_WEEK",
+  "smokingHabit": "NEVER",
+  "hoursSpentSittingPerDay": {
+    "hours": 6
+  }
+}
