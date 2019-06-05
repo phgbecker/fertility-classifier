@@ -1,12 +1,16 @@
 {
-  "season" : "1",
-  "age" : "31",
-  "childishDisease" : "0",
-  "accidentOrSeriousTrauma" : "1",
-  "surgicalIntervention" : "0",
-  "highFeversLastYear" : "1",
-  "frequencyAlcoholConsumption" : "0.6",
-  "smokingHabit" : "-1",
-  "hoursSpentSittingPerDay" : "6",
-  "diagnosis" : "N"
+  "season" : "FALL",
+  "age" : {
+    "number" : 1
+  },
+  "childishDisease" : "YES",
+  "accidentOrSeriousTrauma" : "NO",
+  "surgicalIntervention" : "YES",
+  "highFeversLastYear" : "NO",
+  "frequencyAlcoholConsumption" : "ONCE_A_WEEK",
+  "smokingHabit" : "NEVER",
+  "hoursSpentSittingPerDay" : {
+    "hours" : 0.5
+  },
+  "diagnosis" : null
 }

@@ -2,12 +2,15 @@ package diagnosis;
 
 import diagnosis.attribute.*;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FertilityDiagnosisTest {
     private FertilityDiagnosis fertilityDiagnosis;
 
@@ -15,21 +18,15 @@ public class FertilityDiagnosisTest {
     public void setUp() {
         fertilityDiagnosis = new FertilityDiagnosis(
                 Season.FALL,
-                new Age("31"),
+                new Age(1),
                 ChildishDisease.YES,
                 AccidentOrSeriousTrauma.NO,
                 SurgicalIntervention.YES,
                 HighFeversLastYear.NO,
                 FrequencyAlcoholConsumption.ONCE_A_WEEK,
                 SmokingHabit.NEVER,
-                new HoursSpentSittingPerDay("6"),
-                Diagnosis.NORMAL
+                new HoursSpentSittingPerDay(0.5)
         );
-    }
-
-    @Test
-    public void givenFertilityDiagnosis_whenSerializeToCsv_thenWriteToFile() throws IOException {
-        fertilityDiagnosis.serializeToCsv("fertility_diagnosis_instance.csv");
     }
 
     @Test

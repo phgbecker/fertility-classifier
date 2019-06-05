@@ -4,19 +4,23 @@ import org.junit.Test;
 import weka.classifiers.functions.SimpleLogistic;
 import weka.core.Instances;
 
+import java.io.IOException;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class ClassifierModelTest {
 
     @Test
-    public void givenModelAndClassifier_whenLoadCsvFile_thenClassify() throws Exception {
-        ClassifierModel<SimpleLogistic> classifierModel = new ClassifierModel<>("fertility.model");
-        SimpleLogistic simpleLogistic = classifierModel.loadModel();
-
-        Instances dataSetInstances = classifierModel.loadCsv("fertility_diagnosis_instance.csv").getDataSet();
-        dataSetInstances.setClassIndex(dataSetInstances.numAttributes() - 1);
-        System.out.println(dataSetInstances);
-
-        simpleLogistic.classifyInstance(dataSetInstances.get(0));
-        System.out.println(simpleLogistic);
+    public void givenFileName_whenLoadModel_thenIsInstanceOfSimpleLogistic() throws IOException, ClassNotFoundException {
+        assertThat(
+                new ClassifierModel<>().loadModel("fertility.model")
+        ).isInstanceOf(SimpleLogistic.class);
     }
 
+    @Test
+    public void givenFileName_whenLoadDataSetFromCsv_thenIsInstanceOfInstances() throws IOException {
+        assertThat(
+                new ClassifierModel<>().loadDataSetFromCsv("fertility_diagnosis_dataset.csv")
+        ).isInstanceOf(Instances.class);
+    }
 }

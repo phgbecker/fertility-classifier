@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import diagnosis.attribute.*;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +14,6 @@ import java.io.IOException;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode
 @JsonPropertyOrder(
         {
@@ -45,14 +41,16 @@ public class FertilityDiagnosis {
     private HoursSpentSittingPerDay hoursSpentSittingPerDay;
     private Diagnosis diagnosis;
 
-    public void serializeToCsv(String fileName) throws IOException {
-        CsvMapper csvMapper = new CsvMapper();
-        CsvSchema csvSchema = csvMapper.schemaFor(FertilityDiagnosis.class).withHeader();
-
-        csvMapper.writer(csvSchema).writeValue(
-                new File(fileName),
-                this
-        );
+    public FertilityDiagnosis(Season season, Age age, ChildishDisease childishDisease, AccidentOrSeriousTrauma accidentOrSeriousTrauma, SurgicalIntervention surgicalIntervention, HighFeversLastYear highFeversLastYear, FrequencyAlcoholConsumption frequencyAlcoholConsumption, SmokingHabit smokingHabit, HoursSpentSittingPerDay hoursSpentSittingPerDay) {
+        this.season = season;
+        this.age = age;
+        this.childishDisease = childishDisease;
+        this.accidentOrSeriousTrauma = accidentOrSeriousTrauma;
+        this.surgicalIntervention = surgicalIntervention;
+        this.highFeversLastYear = highFeversLastYear;
+        this.frequencyAlcoholConsumption = frequencyAlcoholConsumption;
+        this.smokingHabit = smokingHabit;
+        this.hoursSpentSittingPerDay = hoursSpentSittingPerDay;
     }
 
     public void serializeToJson(String fileName) throws IOException {
@@ -64,12 +62,10 @@ public class FertilityDiagnosis {
         );
     }
 
-    public FertilityDiagnosis deserializeFromJson(String fileName) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        return objectMapper.readValue(
+    public static FertilityDiagnosis deserializeFromJson(String fileName) throws IOException {
+        return new ObjectMapper().readValue(
                 new File(fileName),
-                this.getClass()
+                FertilityDiagnosis.class
         );
     }
 }
