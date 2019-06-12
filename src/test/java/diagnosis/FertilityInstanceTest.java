@@ -11,12 +11,12 @@ import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class FertilityDiagnosisTest {
-    private FertilityDiagnosis fertilityDiagnosis;
+public class FertilityInstanceTest {
+    private FertilityInstance fertilityInstance;
 
     @Before
     public void setUp() {
-        fertilityDiagnosis = new FertilityDiagnosis(
+        fertilityInstance = new FertilityInstance(
                 Season.FALL,
                 new Age(36),
                 ChildishDisease.YES,
@@ -30,12 +30,12 @@ public class FertilityDiagnosisTest {
     }
 
     @Test
-    public void givenFertilityDiagnosis_whenSerializeToJson_thenWriteToFile() throws IOException {
-        fertilityDiagnosis.serializeToJson("fertility_diagnosis_instance.json");
+    public void givenFertilityInstance_whenSerializeToJson_thenWriteToFile() throws IOException {
+        fertilityInstance.serializeToJson("fertility_instance.json");
     }
 
     @Test
     public void givenJsonFile_whenDeserialize_thenIsEquals() throws IOException {
-        assertThat(FertilityDiagnosis.deserializeFromJson("fertility_diagnosis_instance.json")).isEqualTo(fertilityDiagnosis);
+        assertThat(FertilityInstance.deserializeFromJson("fertility_instance.json")).isEqualTo(fertilityInstance);
     }
 }

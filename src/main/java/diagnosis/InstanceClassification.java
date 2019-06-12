@@ -2,7 +2,6 @@ package diagnosis;
 
 import diagnosis.attribute.Diagnosis;
 import weka.classifiers.functions.SimpleLogistic;
-import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
 
@@ -11,20 +10,24 @@ import java.util.HashMap;
 public class InstanceClassification {
 
     public static void main(String[] args) throws Exception {
-        // Load classifier Model and Dataset
+        // Load classifier model
         ClassifierModel<SimpleLogistic> classifierModel = new ClassifierModel<>();
         SimpleLogistic simpleLogistic = loadModel(classifierModel);
+
+        // Load dataset
         Instances dataSet = loadDataSet(classifierModel);
 
         // Parse a JSON file to an Instance
-        FertilityDiagnosis fertilityDiagnosis = FertilityDiagnosis.deserializeFromJson("fertility_diagnosis_instance.json");
-        Instance instance = setUpInstance(dataSet, fertilityDiagnosis);
+        FertilityInstance fertilityInstance = FertilityInstance.deserializeFromJson("fertility_instance.json");
+        Instance instance = setUpInstance(dataSet, fertilityInstance);
 
+        // Classify instance
         classifyInstance(simpleLogistic, instance);
     }
 
     private static SimpleLogistic loadModel(ClassifierModel<SimpleLogistic> classifierModel) throws java.io.IOException, ClassNotFoundException {
         SimpleLogistic simpleLogistic = classifierModel.loadModel("fertility.model");
+
         System.out.println("MODEL:");
         System.out.println(simpleLogistic);
 
@@ -32,26 +35,19 @@ public class InstanceClassification {
     }
 
     private static Instances loadDataSet(ClassifierModel<SimpleLogistic> classifierModel) throws java.io.IOException {
-        Instances dataSet = classifierModel.loadDataSetFromCsv("fertility_diagnosis_dataset.csv");
+        Instances dataSet = classifierModel.loadDataSetFromCsv("fertility_dataset.csv");
         dataSet.setClassIndex(dataSet.numAttributes() - 1);
+
         System.out.println("DATASET:");
         System.out.println(dataSet);
 
         return dataSet;
     }
 
-    private static Instance setUpInstance(Instances dataSet, FertilityDiagnosis fertilityDiagnosis) {
-        Instance instance = new DenseInstance(9);
+    private static Instance setUpInstance(Instances dataSet, FertilityInstance fertilityInstance) {
+        Instance instance = fertilityInstance.getInstance();
         instance.setDataset(dataSet);
-        instance.setValue(0, fertilityDiagnosis.getSeason().getIndicator());
-        instance.setValue(1, fertilityDiagnosis.getAge().getNormalized());
-        instance.setValue(2, fertilityDiagnosis.getChildishDisease().getIndicator());
-        instance.setValue(3, fertilityDiagnosis.getAccidentOrSeriousTrauma().getIndicator());
-        instance.setValue(4, fertilityDiagnosis.getSurgicalIntervention().getIndicator());
-        instance.setValue(5, fertilityDiagnosis.getHighFeversLastYear().getIndicator());
-        instance.setValue(6, fertilityDiagnosis.getFrequencyAlcoholConsumption().getIndicator());
-        instance.setValue(7, fertilityDiagnosis.getSmokingHabit().getIndicator());
-        instance.setValue(8, fertilityDiagnosis.getHoursSpentSittingPerDay().getNormalized());
+
         System.out.println();
         System.out.print("INSTANCE: ");
         System.out.println(instance);
