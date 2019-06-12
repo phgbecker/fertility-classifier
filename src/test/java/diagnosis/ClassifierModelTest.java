@@ -20,7 +20,7 @@ public class ClassifierModelTest {
     @Test
     public void givenFileName_whenLoadDataSetFromCsv_thenIsInstanceOfInstances() throws IOException {
         assertThat(
-                new ClassifierModel<>().loadDataSetFromCsv("fertility_diagnosis_dataset.csv")
+                new ClassifierModel<>().loadDataSetFromCsv("fertility_dataset.csv")
         ).isInstanceOf(Instances.class);
     }
 }
