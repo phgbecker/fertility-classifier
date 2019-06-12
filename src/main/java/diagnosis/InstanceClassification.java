@@ -44,14 +44,14 @@ public class InstanceClassification {
         Instance instance = new DenseInstance(9);
         instance.setDataset(dataSet);
         instance.setValue(0, fertilityDiagnosis.getSeason().getIndicator());
-        instance.setValue(1, fertilityDiagnosis.getAge().getNumber());
+        instance.setValue(1, fertilityDiagnosis.getAge().getNormalized());
         instance.setValue(2, fertilityDiagnosis.getChildishDisease().getIndicator());
         instance.setValue(3, fertilityDiagnosis.getAccidentOrSeriousTrauma().getIndicator());
         instance.setValue(4, fertilityDiagnosis.getSurgicalIntervention().getIndicator());
         instance.setValue(5, fertilityDiagnosis.getHighFeversLastYear().getIndicator());
         instance.setValue(6, fertilityDiagnosis.getFrequencyAlcoholConsumption().getIndicator());
         instance.setValue(7, fertilityDiagnosis.getSmokingHabit().getIndicator());
-        instance.setValue(8, fertilityDiagnosis.getHoursSpentSittingPerDay().getHours());
+        instance.setValue(8, fertilityDiagnosis.getHoursSpentSittingPerDay().getNormalized());
         System.out.println();
         System.out.print("INSTANCE: ");
         System.out.println(instance);

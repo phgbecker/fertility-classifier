@@ -1,19 +1,31 @@
 package diagnosis.attribute;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
 public class Age {
-    private int number;
+    private double denormalized;
 
     public Age() {
     }
 
-    public Age(int number) {
-        this.number = number;
+    public Age(double age) {
+        this.denormalized = age;
     }
 
-    public int getNumber() {
-        return number;
+    public double getDenormalized() {
+        return denormalized;
+    }
+
+    @JsonIgnore
+    public double getNormalized() {
+        double minAge = 18;
+        double maxAge = 36;
+
+        double amplitude = maxAge - minAge;
+        double proportion = denormalized - minAge;
+
+        return proportion / amplitude;
     }
 }

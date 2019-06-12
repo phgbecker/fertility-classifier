@@ -1,7 +1,7 @@
 {
   "season" : "FALL",
   "age" : {
-    "number" : 1
+    "denormalized" : 36.0
   },
   "childishDisease" : "YES",
   "accidentOrSeriousTrauma" : "NO",
@@ -10,7 +10,7 @@
   "frequencyAlcoholConsumption" : "ONCE_A_WEEK",
   "smokingHabit" : "NEVER",
   "hoursSpentSittingPerDay" : {
-    "hours" : 0.5
+    "denormalized" : 6.0
   },
   "diagnosis" : null
 }

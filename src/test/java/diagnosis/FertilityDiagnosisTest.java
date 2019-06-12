@@ -18,14 +18,14 @@ public class FertilityDiagnosisTest {
     public void setUp() {
         fertilityDiagnosis = new FertilityDiagnosis(
                 Season.FALL,
-                new Age(1),
+                new Age(36),
                 ChildishDisease.YES,
                 AccidentOrSeriousTrauma.NO,
                 SurgicalIntervention.YES,
                 HighFeversLastYear.NO,
                 FrequencyAlcoholConsumption.ONCE_A_WEEK,
                 SmokingHabit.NEVER,
-                new HoursSpentSittingPerDay(0.5)
+                new HoursSpentSittingPerDay(6)
         );
     }
 
@@ -36,6 +36,6 @@ public class FertilityDiagnosisTest {
 
     @Test
     public void givenJsonFile_whenDeserialize_thenIsEquals() throws IOException {
-        assertThat(fertilityDiagnosis.deserializeFromJson("fertility_diagnosis_instance.json")).isEqualTo(fertilityDiagnosis);
+        assertThat(FertilityDiagnosis.deserializeFromJson("fertility_diagnosis_instance.json")).isEqualTo(fertilityDiagnosis);
     }
 }
