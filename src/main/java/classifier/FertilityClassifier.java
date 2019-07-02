@@ -38,7 +38,7 @@ public class FertilityClassifier {
     }
 
     public void classifyInstance(String fileName) throws Exception {
-        FertilityInstance fertilityInstance = FertilityInstance.deserializeFromJson("fertility_instance.json");
+        FertilityInstance fertilityInstance = FertilityInstance.deserializeFromJson(fileName);
         Instance instance = setUpInstance(fertilityInstance);
         classifyInstance(instance);
     }
