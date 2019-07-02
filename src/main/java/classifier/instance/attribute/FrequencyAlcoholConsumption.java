@@ -1,4 +1,4 @@
-package diagnosis.attribute;
+package classifier.instance.attribute;
 
 public enum FrequencyAlcoholConsumption {
     SEVERAL_TIMES_A_DAY(0),

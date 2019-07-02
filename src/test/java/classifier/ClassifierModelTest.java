@@ -1,5 +1,6 @@
-package diagnosis;
+package classifier;
 
+import classifier.model.ClassifierModel;
 import org.junit.Test;
 import weka.classifiers.functions.SimpleLogistic;
 import weka.core.Instances;
@@ -20,7 +21,7 @@ public class ClassifierModelTest {
     @Test
     public void givenFileName_whenLoadDataSetFromCsv_thenIsInstanceOfInstances() throws IOException {
         assertThat(
-                new ClassifierModel<>().loadDataSetFromCsv("fertility_dataset.csv")
+                ClassifierModel.loadDataSetFromCsv("fertility_dataset.csv")
         ).isInstanceOf(Instances.class);
     }
 }

@@ -1,6 +1,7 @@
-package diagnosis;
+package classifier;
 
-import diagnosis.attribute.*;
+import classifier.instance.FertilityInstance;
+import classifier.instance.attribute.*;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package diagnosis.attribute;
+package classifier.instance.attribute;
 
 public enum AccidentOrSeriousTrauma {
     YES(0),

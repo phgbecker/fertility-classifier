@@ -1,4 +1,4 @@
-package diagnosis.attribute;
+package classifier.instance.attribute;
 
 public enum HighFeversLastYear {
     LESS_THAN_THREE_MONTHS_AGO(-1),
