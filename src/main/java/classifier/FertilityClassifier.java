@@ -27,12 +27,6 @@ public class FertilityClassifier {
         return this;
     }
 
-    public void classifyInstance(String fileName) throws Exception {
-        FertilityInstance fertilityInstance = FertilityInstance.deserializeFromJson("fertility_instance.json");
-        Instance instance = setUpInstance(fertilityInstance);
-        classifyInstance(instance);
-    }
-
     private Instance setUpInstance(FertilityInstance fertilityInstance) {
         Instance instance = fertilityInstance.getInstance(dataSet);
 
@@ -41,6 +35,12 @@ public class FertilityClassifier {
         System.out.println(instance);
 
         return instance;
+    }
+
+    public void classifyInstance(String fileName) throws Exception {
+        FertilityInstance fertilityInstance = FertilityInstance.deserializeFromJson("fertility_instance.json");
+        Instance instance = setUpInstance(fertilityInstance);
+        classifyInstance(instance);
     }
 
     private void classifyInstance(Instance instance) throws Exception {
