@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import weka.core.DenseInstance;
 import weka.core.Instance;
+import weka.core.Instances;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,8 +74,10 @@ public class FertilityInstance {
     }
 
     @JsonIgnore
-    public Instance getInstance() {
+    public Instance getInstance(Instances dataSet) {
         Instance fertilityInstance = new DenseInstance(9);
+        fertilityInstance.setDataset(dataSet);
+
         fertilityInstance.setValue(0, getSeason().getIndicator());
         fertilityInstance.setValue(1, getAge().getNormalized());
         fertilityInstance.setValue(2, getChildishDisease().getIndicator());

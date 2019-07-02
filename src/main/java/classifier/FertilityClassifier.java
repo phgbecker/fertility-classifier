@@ -34,8 +34,7 @@ public class FertilityClassifier {
     }
 
     private Instance setUpInstance(FertilityInstance fertilityInstance) {
-        Instance instance = fertilityInstance.getInstance();
-        instance.setDataset(dataSet);
+        Instance instance = fertilityInstance.getInstance(dataSet);
 
         System.out.println();
         System.out.print("INSTANCE: ");
